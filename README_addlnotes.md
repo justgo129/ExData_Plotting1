@@ -4,3 +4,5 @@ package.  These files should run on both versions of R, but may produce some war
 
 Additionally, some overlap, particularly in data processing,
 between each .R file was unavoidable in order to generate separate .R files.
+
+RStudio (using R 3.4.1) was used to generate the plots, from 2017-07-06 to 2017-07-08.
