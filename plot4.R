@@ -50,6 +50,7 @@ legend("topright", legend = names(powerc[,7:9]), lty=1,
        col = legendcolors)
 
 # BOTTOM RIGHT PLOT
+
 plot(powerc[,2], powerc[,4], type="l", main="Plot 4", 
      xlab="", xaxt="n",
      ylab="Global_reactive_power")
@@ -59,3 +60,4 @@ axis(1, at=seq(k), xlab="datetime", labels=wday(powerc[k,1], label=TRUE))
 
 
 dev.off()
+
