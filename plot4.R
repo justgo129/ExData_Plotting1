@@ -51,3 +51,4 @@ axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
 
 dev.copy(png, "plot4.png", width=480, height=480)
 dev.off()
+
