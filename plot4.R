@@ -1,7 +1,7 @@
 #Plot 4.R
 
 #Read in Data to R - needed for all plots
-
+par(mar = c(2.1, 4.1, 4.1, 2.1))
 powerc<-read.csv ("household_power_consumption_subset.txt", header=TRUE, sep="")
 powerc[powerc == "?"]<-NA   # replace all "?" fields with "NA"
 library(lubridate); library(dplyr); library(tidyr); library(graphics)
@@ -50,14 +50,12 @@ legend("topright", legend = names(powerc[,7:9]), lty=1,
        col = legendcolors)
 
 # BOTTOM RIGHT PLOT
-
 plot(powerc[,2], powerc[,4], type="l", main="Plot 4", 
-     xlab="", xaxt="n",
+     xlab="datetime", xaxt="n",
      ylab="Global_reactive_power")
 lines(powerc[,2], powerc[,4], type="l", col = "black", lwd=2)
 k=seq(1,2160,1.5)
-axis(1, at=seq(k), xlab="datetime", labels=wday(powerc[k,1], label=TRUE))
+axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
 
 
 dev.off()
-
