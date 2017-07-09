@@ -7,7 +7,7 @@ powerc<-read.csv ("household_power_consumption_subset.txt", header=TRUE, sep="")
 powerc[powerc == "?"]<-NA   # replace all "?" fields with "NA"
 library(lubridate); library(dplyr); library(tidyr); library(graphics)
 
-png(file="plot1.png",width=480,height=480)
+png(file="plot3.png",width=480,height=480)
 
 #Now, let's plot
 legendcolors<-c("green", "red", "blue")  # Prepare legend colors
