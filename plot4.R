@@ -43,7 +43,7 @@ legend("topright", legend = names(powerc[,7:9]), lty=1,
 # BOTTOM RIGHT PLOT
 plot(powerc[,2], powerc[,4], type="l", main="Plot 4", 
      xlab="", xaxt="n",
-     ylab="Global Reactive Power (kilowatts)")
+     ylab="Voltage")
 lines(powerc[,2], powerc[,4], type="l", col = "black", lwd=2)
 k=seq(1,2160,1.5)
 axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
