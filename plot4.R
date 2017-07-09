@@ -12,8 +12,8 @@ png(file="plot4.png",width=480,height=480)
 par(mfrow=c(2,2))
 
 # TOP LEFT PLOT
-# BOTTOM RIGHT PLOT
-plot(powerc[,2], powerc[,3], type="l", main="Plot 4", 
+
+plot(powerc[,2], powerc[,3], type="l",  
      xlab="", xaxt="n",
      ylab="Global Active Power")
 lines(powerc[,2], powerc[,3], type="l", col = "black", lwd=2)
