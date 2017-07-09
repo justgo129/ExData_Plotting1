@@ -12,18 +12,24 @@ png(file="plot4.png",width=480,height=480)
 par(mfrow=c(2,2))
 
 # TOP LEFT PLOT
+# BOTTOM RIGHT PLOT
+plot(powerc[,2], powerc[,3], type="l", main="Plot 4", 
+     xlab="", xaxt="n",
+     ylab="Global Active Power")
+lines(powerc[,2], powerc[,3], type="l", col = "black", lwd=2)
+k=seq(1,2160,1.5)
+axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
 
-hist(powerc$Global_active_power, breaks=10,  col = "red", 
-     main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
+
 
 # TOP RIGHT PLOT
 
-plot(powerc[,2], powerc[,4], type="l", main="Plot 2", 
-     xlab="", xaxt="n",
-     ylab="Voltage")
-lines(powerc[,2], powerc[,4], type="l", col = "black", lwd=2)
+plot(powerc[,2], powerc[,5], type="l", main="Plot 2", 
+    xaxt="n", xlab="datetime",
+    ylab="Voltage")
+lines(powerc[,2], powerc[,5], type="l", col = "black", lwd=2)
 k=seq(1,2160,1.5)
-axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
+axis(1, at=seq(k),  labels=wday(powerc[k,1], label=TRUE))
 
 
 
@@ -44,13 +50,12 @@ legend("topright", legend = names(powerc[,7:9]), lty=1,
        col = legendcolors)
 
 # BOTTOM RIGHT PLOT
-plot(powerc[,2], powerc[,3], type="l", main="Plot 4", 
+plot(powerc[,2], powerc[,4], type="l", main="Plot 4", 
      xlab="", xaxt="n",
-     ylab="Global Active Power (kilowatts)")
+     ylab="Global_reactive_power")
 lines(powerc[,2], powerc[,3], type="l", col = "black", lwd=2)
 k=seq(1,2160,1.5)
-axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
+axis(1, at=seq(k), xlab="datetime", labels=wday(powerc[k,1], label=TRUE))
 
 
 dev.off()
-
