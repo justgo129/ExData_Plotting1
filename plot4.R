@@ -54,7 +54,7 @@ legend("topright", legend = names(powerc[,7:9]), lty=1,
 plot(powerc[,2], powerc[,4], type="l", main="Plot 4", 
      xlab="", xaxt="n",
      ylab="Global_reactive_power")
-lines(powerc[,2], powerc[,3], type="l", col = "black", lwd=2)
+lines(powerc[,2], powerc[,4], type="l", col = "black", lwd=2)
 k=seq(1,2160,1.5)
 axis(1, at=seq(k), xlab="datetime", labels=wday(powerc[k,1], label=TRUE))
 
