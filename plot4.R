@@ -24,7 +24,7 @@ axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
 
 # TOP RIGHT PLOT
 
-plot(powerc[,2], powerc[,5], type="l", main="Plot 2", 
+plot(powerc[,2], powerc[,5], type="l",
     xaxt="n", xlab="datetime",
     ylab="Voltage")
 lines(powerc[,2], powerc[,5], type="l", col = "black", lwd=2)
@@ -37,7 +37,7 @@ axis(1, at=seq(k),  labels=wday(powerc[k,1], label=TRUE))
 
 legendcolors<-c("green", "red", "blue")  # Prepare legend colors
 
-plot(powerc[,2], powerc[,7], type="l", main= "Plot 3", xlab="", ylab="Energy sub metering", 
+plot(powerc[,2], powerc[,7], type="l", xlab="", ylab="Energy sub metering", 
      xaxt="n")
 
 lines(powerc[,2], powerc[,7], type="l", col = legendcolors[1], lwd=1)
@@ -50,7 +50,7 @@ legend("topright", legend = names(powerc[,7:9]), lty=1,
        col = legendcolors)
 
 # BOTTOM RIGHT PLOT
-plot(powerc[,2], powerc[,4], type="l", main="Plot 4", 
+plot(powerc[,2], powerc[,4], type="l",
      xlab="datetime", xaxt="n",
      ylab="Global_reactive_power")
 lines(powerc[,2], powerc[,4], type="l", col = "black", lwd=2)
