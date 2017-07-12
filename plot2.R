@@ -1,21 +1,27 @@
 #Plot 2.R
 
-#Preprocessing of data
 
 #Read in Data to R
-powerc<-read.csv ("household_power_consumption_subset.txt", header=TRUE, sep="")
-powerc[powerc == "?"]<-NA   # replace all "?" fields with "NA"
-library(lubridate); library(dplyr); library(tidyr); library(graphics)
+library(lubridate); library(dplyr); library(graphics); library(anytime)
 
+powerc<-read.table("household_power_consumption.txt", 
+                   header=TRUE, sep=" ")
+
+# Begin processing
+powerc<-filter(powerc, Date == "1/2/2007" | Date == "2/2/2007") 
+powerc[,1]<-as.Date(powerc[,1])   # -> change date from a factor to one of date
+powerc<-cbind(powerc, paste(powerc[,1], powerc[,2])) # combine date and time to create a new col: powerc[,10]
+
+powerc[,3]<-as.numeric(as.character(powerc[,3]), na.rm=TRUE)  
+powerc[,3]<-as.numeric(powerc[,3],exclude = NULL) # So no return error with plotted
+
+# Plot, using cutoffs for dates
 png(file="plot2.png",width=480,height=480)
+plot(powerc[,10], powerc[,3], ylab="Global Active Power (kilowatts)", type="l", xaxt="n")
+lines(powerc[,10], powerc[,3], ty="l")
 
-# Plot 2: Generate Plot
-plot(powerc[,2], powerc[,3], type="l", main="Plot 2", 
-     xlab="", xaxt="n",
-     ylab="Global Active Power (kilowatts)")
-lines(powerc[,2], powerc[,3], type="l", col = "black", lwd=2)
-k=seq(1,2160,1.5)
-axis(1, at=seq(k), labels=wday(powerc[k,1], label=TRUE))
+axis(1, at=c(1,1441, 2880), labels = c("Thurs", "Fri", "Sat"))
+
 
 dev.off()
 
