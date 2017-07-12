@@ -2,7 +2,11 @@
 
 
 #Read in Data to R
-library(lubridate); library(dplyr); library(graphics); library(anytime)
+#Plot 2.R
+
+
+#Read in Data to R
+library(lubridate); library(dplyr); library(graphics);
 
 powerc<-read.table("household_power_consumption.txt", 
                    header=TRUE, sep=" ")
@@ -10,7 +14,7 @@ powerc<-read.table("household_power_consumption.txt",
 # Begin processing
 powerc<-filter(powerc, Date == "1/2/2007" | Date == "2/2/2007") 
 powerc[,1]<-as.Date(powerc[,1])   # -> change date from a factor to one of date
-powerc<-cbind(powerc, paste(powerc[,1], powerc[,2])) # combine date and time to create a new col: powerc[,10]
+powerc<-cbind(powerc, paste(powerc[,1], powerc[,2])) # combine date and time
 
 powerc[,3]<-as.numeric(as.character(powerc[,3]), na.rm=TRUE)  
 powerc[,3]<-as.numeric(powerc[,3],exclude = NULL) # So no return error with plotted
