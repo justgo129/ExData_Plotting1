@@ -60,8 +60,8 @@ lines(powerc[,10], powerc[,9], type="l", col = legendcolors[3], lwd=1)
 axis(1, at=c(1,1441, 2880), labels = c("Thurs", "Fri", "Sat"))
 axis(side = 2, at = c(0,10,20,30), labels = c("0", "10", "20", "30"))
 
-legend("topright", legend = names(powerc[,7:9]), lty=1,
-       lwd = 2, col = legendcolors)
+legend("topright", legend = names(powerc[,7:9]), 
+       lwd = 2, col = legendcolors, bty = "n")
 
 # BOTTOM RIGHT PLOT
 plot(powerc[,10], powerc[,4], type="l", 
