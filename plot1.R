@@ -4,7 +4,7 @@
 # Read in libraries and data frame:
 library(lubridate); library(dplyr); library(graphics) 
 powerc<-read.table("household_power_consumption.txt", 
-   header=TRUE, sep=" ")
+   header=TRUE, sep=";")
 
 #Begin processing data: (1) dates, and (2) item to be tracked:
 powerc<-filter(powerc, Date == "1/2/2007" | Date == "2/2/2007")
