@@ -1,27 +1,43 @@
+
+
 #Plot 3.R
 
 #Read in Data to R
-powerc<-read.csv ("household_power_consumption_subset.txt", header=TRUE, sep="")
-powerc[powerc == "?"]<-NA   # replace all "?" fields with "NA"
-library(lubridate); library(dplyr); library(tidyr); library(graphics)
+library(lubridate); library(dplyr); library(graphics);
 
-png(file="plot3.png",width=480,height=480)
+powerc<-read.table("household_power_consumption.txt", 
+                   header=TRUE, sep=";")
+
+# Begin processing
+powerc<-filter(powerc, Date == "1/2/2007" | Date == "2/2/2007")
+powerc[powerc == "?"]<-NA   # replace all "?" fields with "NA"
+powerc[,1]<-as.Date(powerc[,1])   # -> change date from a factor to one of date
+
+powerc<-cbind(powerc, paste(powerc[,1], powerc[,2])) # combine date and time: New col 10
+powerc<-cbind(powerc, paste(powerc[,7], powerc[,8], powerc[,9]))  #Define new col 11: plotted area to include cols 7-9
+
+# Change col class types to facilitate plotting
+for (i in 7:9) {
+  powerc[,i]<-as.numeric(powerc[,i])
+}
 
 #Now, let's plot
-legendcolors<-c("green", "red", "blue")  # Prepare legend colors
+ png(file="plot3.png",width=480,height=480)
+legendcolors<-c("black", "red", "blue")  # Prepare legend colors
 
-plot(powerc[,2], powerc[,7], type="l", main= "Plot 3", xlab="", ylab="Energy sub metering", 
-     xaxt="n")
 
-lines(powerc[,2], powerc[,7], type="l", col = legendcolors[1], lwd=1)
-lines(powerc[,2], powerc[,8], type="l", col = legendcolors[2], lwd=1)
-lines(powerc[,2], powerc[,9], type="l", col = legendcolors[3], lwd=1)
-k=seq(1,2160,1.5)
-axis(1, at=seq(k), labels=powerc[k,1])
+plot(powerc[,10], powerc[,7], xlab="", type="l", ylab="Energy sub metering", 
+     yaxt="n", xaxt="n")
 
-#Adjust axes values, and generate .png
+lines(powerc[,10], powerc[,7], type="l", col = legendcolors[1], lwd=1)
+lines(powerc[,10], powerc[,8], type="l", col = legendcolors[2], lwd=1)
+lines(powerc[,10], powerc[,9], type="l", col = legendcolors[3], lwd=1)
+
+
+axis(1, at=c(1,1441, 2880), labels = c("Thurs", "Fri", "Sat"))
+axis(side = 2, at = c(0,10,20,30), labels = c("0", "10", "20", "30"))
 
 legend("topright", legend = names(powerc[,7:9]), lty=1,
-       col = legendcolors, border="black")
+       lwd = 2, col = legendcolors)
 
-dev.off()
+ dev.off()
