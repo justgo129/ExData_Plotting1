@@ -2,14 +2,10 @@
 
 
 #Read in Data to R
-#Plot 2.R
-
-
-#Read in Data to R
-library(lubridate); library(dplyr); library(graphics);
+library(lubridate); library(dplyr); library(graphics)
 
 powerc<-read.table("household_power_consumption.txt", 
-                   header=TRUE, sep=" ")
+                   header=TRUE, sep=";")
 
 # Begin processing
 powerc<-filter(powerc, Date == "1/2/2007" | Date == "2/2/2007") 
@@ -28,4 +24,3 @@ axis(1, at=c(1,1441, 2880), labels = c("Thurs", "Fri", "Sat"))
 
 
 dev.off()
-
